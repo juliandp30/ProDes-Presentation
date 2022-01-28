@@ -38,7 +38,7 @@ data["TenorEstribos"] = data["PesoEstribos"] * 1000 / area_proyecto
 data["TenorTotal"] = data["PesoTotal"] * 1000 / area_proyecto
 
 data["Longitud"] = data["Longitud"].apply(str)
-data["analisis"] = data["Calibres"] + " con " + data["Longitud"] + "m"
+data["Análisis"] = data["Calibres"] + " % " + data["Longitud"] + "m"
 
 st.set_page_config(
     page_title="ProDes",
@@ -51,53 +51,62 @@ data["PesoTotal"] = data["PesoTotal"] / max(data["PesoTotal"])
 data["NumeroBarras"] = data["NumeroBarras"] / max(data["NumeroBarras"])
 data["NumeroFiguras"] = data["NumeroFiguras"] / max(data["NumeroFiguras"])
 
+st.title('Indicadores y tendencias')
+
 fig = px.bar(
     data,
-    x="analisis",
+    x="Análisis",
     y=["PesoTotal", "NumeroBarras", "NumeroFiguras"],
+    labels={
+        "value": "",
+        "variable": "Indicador"
+    },
     barmode=view_mode,
 )
+fig.update_yaxes(title='', visible=True, showticklabels=False)
 fig.update_traces(hoverinfo='skip', hovertemplate=None)
 st.plotly_chart(fig, use_container_width=True)
 
+
+st.title('Peso total de refuerzo')
 fig_peso = px.bar(
     data,
     x="Longitud",
     y=["PesoRefLongitudinal", "PesoEstribos"],
     labels={
-        "Longitud": "Multiplo de Longituditud (m)",
+        "Longitud": "Múltiplo de Longitud (m)",
         "Calibres": "Calibres empleados",
         "value": "Peso (tonf)",
     },
     color="Calibres",
     barmode="group",
-    height=400,
-    title="Pesos",
 )
 st.plotly_chart(fig_peso, use_container_width=True)
+
+st.title('Tenores de refuerzo')
 
 fig_tenor = px.bar(
     data,
     x="Longitud",
     y=["TenorRefLongitudinal", "TenorEstribos"],
     labels={
-        "Longitud": "Multiplo de Longituditud (m)",
+        "Longitud": "Múltiplo de Longitud (m)",
         "Calibres": "Calibres empleados",
         "value": "Tenor (kgf/m²)",
     },
     color="Calibres",
     barmode="group",
-    height=400,
-    title="Tenores",
 )
 st.plotly_chart(fig_tenor, use_container_width=True)
+
+st.title('Análisis de almacenamiento')
 
 fig_figuras = px.bar(
     data,
     x="Longitud",
     y=["NumeroFiguras"],
     labels={
-        "Longitud": "Multiplo de Longituditud (m)",
+        "Longitud": "Múltiplo de Longitud (m)",
         "Calibres": "Calibres empleados",
         "value": "Número figuras",
     },
@@ -108,12 +117,14 @@ fig_figuras = px.bar(
 )
 st.plotly_chart(fig_figuras, use_container_width=True)
 
+st.title('Análisis de colocación')
+
 fig_barras = px.bar(
     data,
     x="Longitud",
     y=["NumeroBarras"],
     labels={
-        "Longitud": "Multiplo de Longituditud (m)",
+        "Longitud": "Múltiplo de Longitud (m)",
         "Calibres": "Calibres empleados",
         "value": "Número de barras",
     },
