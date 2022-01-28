@@ -26,8 +26,8 @@ data = pd.DataFrame(
         "Longitud",
         "PesoRefLongitudinal",
         "PesoEstribos",
-        "NumeroFiguras",
-        "NumeroBarras",
+        "NúmeroFiguras",
+        "NúmeroBarras",
         "Calibres",
     ],
 )
@@ -47,16 +47,16 @@ st.set_page_config(
 
 view_mode = st.sidebar.selectbox("Modo de vista", options=["group", "stack"])
 
-data["PesoTotal"] = data["PesoTotal"] / max(data["PesoTotal"])
-data["NumeroBarras"] = data["NumeroBarras"] / max(data["NumeroBarras"])
-data["NumeroFiguras"] = data["NumeroFiguras"] / max(data["NumeroFiguras"])
+data["Peso Total"] = data["PesoTotal"] / max(data["PesoTotal"])
+data["Número Barras"] = data["NúmeroBarras"] / max(data["NúmeroBarras"])
+data["Número Figuras"] = data["NúmeroFiguras"] / max(data["NúmeroFiguras"])
 
 st.title('Indicadores y tendencias')
 
 fig = px.bar(
     data,
     x="Análisis",
-    y=["PesoTotal", "NumeroBarras", "NumeroFiguras"],
+    y=["Peso Total", "Número Barras", "Número Figuras"],
     labels={
         "value": "",
         "variable": "Indicador"
@@ -104,7 +104,7 @@ st.title('Análisis de almacenamiento')
 fig_figuras = px.bar(
     data,
     x="Longitud",
-    y=["NumeroFiguras"],
+    y=["NúmeroFiguras"],
     labels={
         "Longitud": "Múltiplo de Longitud (m)",
         "Calibres": "Calibres empleados",
@@ -112,8 +112,6 @@ fig_figuras = px.bar(
     },
     color="Calibres",
     barmode="group",
-    height=400,
-    title="Número de figuras",
 )
 st.plotly_chart(fig_figuras, use_container_width=True)
 
@@ -122,7 +120,7 @@ st.title('Análisis de colocación')
 fig_barras = px.bar(
     data,
     x="Longitud",
-    y=["NumeroBarras"],
+    y=["NúmeroBarras"],
     labels={
         "Longitud": "Múltiplo de Longitud (m)",
         "Calibres": "Calibres empleados",
@@ -130,7 +128,5 @@ fig_barras = px.bar(
     },
     color="Calibres",
     barmode="group",
-    height=400,
-    title="Cantidad de varillas",
 )
 st.plotly_chart(fig_barras, use_container_width=True)
