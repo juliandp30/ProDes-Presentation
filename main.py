@@ -102,13 +102,12 @@ data = update_dataframe(data, area_proyecto)
 uploaded_file = st.file_uploader("Cargar CSV", type="csv")
 
 if uploaded_file is not None:
-
     data = pd.read_csv(uploaded_file)
-    data = update_dataframe(data, area_proyecto)
 
 if data is not None:
     area_proyecto = st.sidebar.number_input(
         "Area del proyecto (m2)", value=15531, min_value=1
     )
+    update_dataframe(data, area_proyecto)
     view_mode = st.sidebar.selectbox("Modo de vista", options=["group", "stack"])
     graficar_data(data)
