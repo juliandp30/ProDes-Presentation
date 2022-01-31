@@ -3,7 +3,7 @@ import streamlit as st
 import plotly.express as px
 
 
-def graficar_data(data, font_size=14):
+def graficar_data(data, font_size=20):
     min_index = data["PesoTotal"].T.idxmin()
     min_index_name_peso = data.iloc[min_index]["Análisis"]
 
@@ -24,40 +24,55 @@ def graficar_data(data, font_size=14):
         ],
         labels={"value": "", "variable": "Indicador"},
         barmode=view_mode,
+        height=700,
     )
+    fig.update_xaxes(tickangle=90)
     fig.update_layout(font_size=font_size)
     fig.update_yaxes(title="", visible=True, showticklabels=False)
     fig.update_traces(hoverinfo="skip", hovertemplate=None)
     st.plotly_chart(fig, use_container_width=True)
 
     st.title("Peso total de refuerzo")
+    
+    min_index = data["PesoTotal"].T.idxmin()
+    min_index_name = data.iloc[min_index]["Análisis"]
+
+    st.write(f"El análisis {min_index_name} tiene el menor peso, con {min(data['PesoTotal']):.2f} tonf")
     fig = px.bar(
         data,
         x="Longitud",
-        y=["PesoRefLongitudinal", "PesoEstribos"],
+        y=["PesoTotalMin"],
         labels={
             "Longitud": "Múltiplo de Longitud (m)",
             "Calibres": "Calibres empleados",
-            "value": "Peso (tonf)",
+            "value": f"Aumento en el peso (tonf)",
         },
         color="Calibres",
         barmode="group",
+        height=500,
     )
     fig.update_layout(font_size=font_size)
     st.plotly_chart(fig, use_container_width=True)
 
     st.title("Tenores de refuerzo")
+    
+    min_index = data["TenorTotal"].T.idxmin()
+    min_index_name = data.iloc[min_index]["Análisis"]
+
+    st.write(f"El análisis {min_index_name} tiene el menor tenor, con {min(data['TenorTotal']):.2f} kgf/m²")
+
     fig = px.bar(
         data,
         x="Longitud",
-        y=["TenorRefLongitudinal", "TenorEstribos"],
+        y=["TenorTotalMin"],
         labels={
             "Longitud": "Múltiplo de Longitud (m)",
             "Calibres": "Calibres empleados",
-            "value": "Tenor (kgf/m²)",
+            "value": "Aumento en el tenor (kgf/m²)",
         },
         color="Calibres",
         barmode="group",
+        height=500,
     )
     fig.update_layout(font_size=font_size)
     st.plotly_chart(fig, use_container_width=True)
@@ -74,6 +89,7 @@ def graficar_data(data, font_size=14):
         },
         color="Calibres",
         barmode="group",
+        height=500,
     )
     fig.update_layout(font_size=font_size)
     st.plotly_chart(fig, use_container_width=True)
@@ -90,6 +106,7 @@ def graficar_data(data, font_size=14):
         },
         color="Calibres",
         barmode="group",
+        height=500,
     )
     fig.update_layout(font_size=font_size)
     fig.update_layout(
@@ -106,6 +123,13 @@ def update_dataframe(data, area_proyecto):
 
     data["Longitud"] = data["Longitud"].apply(str)
     data["Análisis"] = data["Calibres"] + " % " + data["Longitud"] + "m"
+
+    min_index = data["TenorTotal"].T.idxmin()
+    min_index_name = data.iloc[min_index]["Análisis"]
+    data["TenorTotalMin"] = data["TenorTotal"] - min(data["TenorTotal"])
+    data[f"Tenor Total ({min_index_name})"] = data["TenorTotalMin"] / max(
+        data["TenorTotalMin"]
+    )
 
     min_index = data["PesoTotal"].T.idxmin()
     min_index_name = data.iloc[min_index]["Análisis"]
@@ -143,7 +167,7 @@ if uploaded_file is not None:
 
 if data is not None:
     area_proyecto = st.sidebar.number_input(
-        "Area del proyecto (m2)", value=15531, min_value=1
+        "Area del proyecto (m²)", value=15531, min_value=1
     )
     update_dataframe(data, area_proyecto)
     view_mode = st.sidebar.selectbox("Modo de vista", options=["group", "stack"])
