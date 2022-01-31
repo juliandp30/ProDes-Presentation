@@ -26,18 +26,20 @@ def graficar_data(data, font_size=20):
         barmode=view_mode,
         height=700,
     )
-    fig.update_xaxes(tickangle=90)
+    fig.update_xaxes(tickangle=270)
     fig.update_layout(font_size=font_size)
     fig.update_yaxes(title="", visible=True, showticklabels=False)
     fig.update_traces(hoverinfo="skip", hovertemplate=None)
     st.plotly_chart(fig, use_container_width=True)
 
     st.title("Peso total de refuerzo")
-    
+
     min_index = data["PesoTotal"].T.idxmin()
     min_index_name = data.iloc[min_index]["Análisis"]
 
-    st.write(f"El análisis {min_index_name} tiene el menor peso, con {min(data['PesoTotal']):.2f} tonf")
+    st.subheader(
+        f"El análisis {min_index_name} tiene el menor peso, con {min(data['PesoTotal']):.2f} tonf"
+    )
     fig = px.bar(
         data,
         x="Longitud",
@@ -55,11 +57,13 @@ def graficar_data(data, font_size=20):
     st.plotly_chart(fig, use_container_width=True)
 
     st.title("Tenores de refuerzo")
-    
+
     min_index = data["TenorTotal"].T.idxmin()
     min_index_name = data.iloc[min_index]["Análisis"]
 
-    st.write(f"El análisis {min_index_name} tiene el menor tenor, con {min(data['TenorTotal']):.2f} kgf/m²")
+    st.subheader(
+        f"El análisis {min_index_name} tiene el menor tenor, con {min(data['TenorTotal']):.2f} kgf/m²"
+    )
 
     fig = px.bar(
         data,
@@ -78,6 +82,14 @@ def graficar_data(data, font_size=20):
     st.plotly_chart(fig, use_container_width=True)
 
     st.title("Análisis de almacenamiento")
+
+    min_index = data["NúmeroFiguras"].T.idxmin()
+    min_index_name = data.iloc[min_index]["Análisis"]
+
+    st.subheader(
+        f"El análisis {min_index_name} tiene la menor cantidad de figuras, con {min(data['NúmeroFiguras'])}"
+    )
+
     fig = px.bar(
         data,
         x="Longitud",
@@ -95,6 +107,14 @@ def graficar_data(data, font_size=20):
     st.plotly_chart(fig, use_container_width=True)
 
     st.title("Análisis de colocación")
+
+    min_index = data["NúmeroBarras"].T.idxmin()
+    min_index_name = data.iloc[min_index]["Análisis"]
+
+    st.subheader(
+        f"El análisis {min_index_name} tiene la menor cantidad de barras, con {min(data['NúmeroBarras'])}"
+    )
+
     fig = px.bar(
         data,
         x="Longitud",
