@@ -3,21 +3,35 @@ import streamlit as st
 import plotly.express as px
 
 
-def graficar_data(data):
+def graficar_data(data, font_size=14):
+    min_index = data["PesoTotal"].T.idxmin()
+    min_index_name_peso = data.iloc[min_index]["Análisis"]
+
+    min_index = data["NúmeroBarras"].T.idxmin()
+    min_index_name_barras = data.iloc[min_index]["Análisis"]
+
+    min_index = data["NúmeroFiguras"].T.idxmin()
+    min_index_name_figuras = data.iloc[min_index]["Análisis"]
+
     st.title("Indicadores y tendencias")
     fig = px.bar(
         data,
         x="Análisis",
-        y=["Peso Total", "Número Barras", "Número Figuras"],
+        y=[
+            f"Peso Total ({min_index_name_peso})",
+            f"Número Barras ({min_index_name_barras})",
+            f"Número Figuras ({min_index_name_figuras})",
+        ],
         labels={"value": "", "variable": "Indicador"},
         barmode=view_mode,
     )
+    fig.update_layout(font_size=font_size)
     fig.update_yaxes(title="", visible=True, showticklabels=False)
     fig.update_traces(hoverinfo="skip", hovertemplate=None)
     st.plotly_chart(fig, use_container_width=True)
 
     st.title("Peso total de refuerzo")
-    fig_peso = px.bar(
+    fig = px.bar(
         data,
         x="Longitud",
         y=["PesoRefLongitudinal", "PesoEstribos"],
@@ -29,10 +43,11 @@ def graficar_data(data):
         color="Calibres",
         barmode="group",
     )
-    st.plotly_chart(fig_peso, use_container_width=True)
+    fig.update_layout(font_size=font_size)
+    st.plotly_chart(fig, use_container_width=True)
 
     st.title("Tenores de refuerzo")
-    fig_tenor = px.bar(
+    fig = px.bar(
         data,
         x="Longitud",
         y=["TenorRefLongitudinal", "TenorEstribos"],
@@ -44,10 +59,11 @@ def graficar_data(data):
         color="Calibres",
         barmode="group",
     )
-    st.plotly_chart(fig_tenor, use_container_width=True)
+    fig.update_layout(font_size=font_size)
+    st.plotly_chart(fig, use_container_width=True)
 
     st.title("Análisis de almacenamiento")
-    fig_figuras = px.bar(
+    fig = px.bar(
         data,
         x="Longitud",
         y=["NúmeroFiguras"],
@@ -59,10 +75,11 @@ def graficar_data(data):
         color="Calibres",
         barmode="group",
     )
-    st.plotly_chart(fig_figuras, use_container_width=True)
+    fig.update_layout(font_size=font_size)
+    st.plotly_chart(fig, use_container_width=True)
 
     st.title("Análisis de colocación")
-    fig_barras = px.bar(
+    fig = px.bar(
         data,
         x="Longitud",
         y=["NúmeroBarras"],
@@ -74,7 +91,11 @@ def graficar_data(data):
         color="Calibres",
         barmode="group",
     )
-    st.plotly_chart(fig_barras, use_container_width=True)
+    fig.update_layout(font_size=font_size)
+    fig.update_layout(
+        yaxis_range=[0.99 * min(data["NúmeroBarras"]), 1.01 * max(data["NúmeroBarras"])]
+    )
+    st.plotly_chart(fig, use_container_width=True)
 
 
 def update_dataframe(data, area_proyecto):
@@ -86,9 +107,26 @@ def update_dataframe(data, area_proyecto):
     data["Longitud"] = data["Longitud"].apply(str)
     data["Análisis"] = data["Calibres"] + " % " + data["Longitud"] + "m"
 
-    data["Peso Total"] = data["PesoTotal"] / max(data["PesoTotal"])
-    data["Número Barras"] = data["NúmeroBarras"] / max(data["NúmeroBarras"])
-    data["Número Figuras"] = data["NúmeroFiguras"] / max(data["NúmeroFiguras"])
+    min_index = data["PesoTotal"].T.idxmin()
+    min_index_name = data.iloc[min_index]["Análisis"]
+    data["PesoTotalMin"] = data["PesoTotal"] - min(data["PesoTotal"])
+    data[f"Peso Total ({min_index_name})"] = data["PesoTotalMin"] / max(
+        data["PesoTotalMin"]
+    )
+
+    min_index = data["NúmeroBarras"].T.idxmin()
+    min_index_name = data.iloc[min_index]["Análisis"]
+    data["NúmeroBarrasMin"] = data["NúmeroBarras"] - min(data["NúmeroBarras"])
+    data[f"Número Barras ({min_index_name})"] = data["NúmeroBarrasMin"] / max(
+        data["NúmeroBarrasMin"]
+    )
+
+    min_index = data["NúmeroFiguras"].T.idxmin()
+    min_index_name = data.iloc[min_index]["Análisis"]
+    data["NúmeroFigurasMin"] = data["NúmeroFiguras"] - min(data["NúmeroFiguras"])
+    data[f"Número Figuras ({min_index_name})"] = data["NúmeroFigurasMin"] / max(
+        data["NúmeroFigurasMin"]
+    )
 
     return data
 
@@ -97,7 +135,6 @@ st.set_page_config(page_title="ProDes", layout="wide")
 area_proyecto = 15531
 
 data = pd.read_csv("./defaults.csv")
-data = update_dataframe(data, area_proyecto)
 
 uploaded_file = st.file_uploader("Cargar CSV", type="csv")
 
