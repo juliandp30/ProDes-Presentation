@@ -19,8 +19,8 @@ def graficar_data(data, font_size=20):
         x="Análisis",
         y=[
             f"Peso Total ({min_index_name_peso})",
-            f"Número Barras ({min_index_name_barras})",
             f"Número Figuras ({min_index_name_figuras})",
+            f"Número Barras ({min_index_name_barras})",
         ],
         labels={"value": "", "variable": "Indicador"},
         barmode=view_mode,
