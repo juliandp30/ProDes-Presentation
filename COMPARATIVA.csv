@@ -1,4 +1,4 @@
-MultiplosLongitud,PesoRefLongitudinal,PesoEstribos,NúmeroFiguras,NúmeroBarras,Calibres
+Longitud,PesoRefLongitudinal,PesoEstribos,NÃºmeroFiguras,NÃºmeroBarras,Calibres
 0.1,89.18,21.13,255,0,"Ø1/2"" A Ø1"" @0.10"
 0.1,92.15,20.78,210,0,"Ø5/8"" A Ø7/8"" @0.10"
 0.1,94.40,20.75,192,0,"Ø3/4"" @0.10"
@@ -11,4 +11,3 @@ MultiplosLongitud,PesoRefLongitudinal,PesoEstribos,NúmeroFiguras,NúmeroBarras,Ca
 1,97.87,20.80,73,0,"Ø5/8"" A Ø7/8"" @1.00"
 1,100.21,20.77,65,0,"Ø3/4"" @1.00"
 1,99.00,20.79,56,0,"Ø3/4 Y 7/8"" @1.00"
-,,,,,
