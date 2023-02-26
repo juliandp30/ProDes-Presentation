@@ -14,19 +14,25 @@ uploaded_file = st.file_uploader("Cargar archivo de excel", type="xlsx")
 if uploaded_file is not None:
     data = pd.read_excel(uploaded_file)
 
-if data is not None:
-    area_proyecto = st.sidebar.number_input(
-        "Área del proyecto (m²)", value=10000, min_value=1
-    )
 
+with st.sidebar.form(key ='Form1'):
 
-for i in range (5):
-    precio_i = st.sidebar.form.number_input(
-            "Peso barra " + str(i), value=5000, min_value=1
+    if data is not None:
+        area_proyecto = st.number_input(
+            "Área del proyecto (m²)", value=10000, min_value=1
         )
 
-# Now add a submit button to the form:
-st.sidebar.form.form_submit_button("Guardar precios")
+    for i in range (5):
+        precio_i = st.number_input(
+                "Peso barra " + str(i), value=5000, min_value=1
+            )
+            
+    user_word = st.text_input("Enter a keyword", "habs")    
+    select_language = st.radio('Tweet language', ('All', 'English', 'French'))
+    include_retweets = st.checkbox('Include retweets in data')
+    num_of_tweets = st.number_input('Maximum number of tweets', 100)
+    submitted1 = st.form_submit_button(label = 'Guardar precios')
+
 
 
 # data_heads = data.columns.values
