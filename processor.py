@@ -142,25 +142,3 @@ def asign_values(result, data_heads, data_analysis):
             continue
 
     return data_analysis
-
-
-
-
-
-
-import pandas as pn
-
-data = pn.read_excel("Datos_excel_vigas.xlsx")
-
-data_heads = data.columns.values
-data_values = data.values
-
-results = {}
-
-for data_i in data_values:
-
-    analysis_results = new_analysis_constructor()
-    analysis_results = asign_values(data_i, data_heads, analysis_results)
-    results[data_i[0]] = analysis_results
-
-print(data_heads)
