@@ -19,7 +19,6 @@ if data is not None:
         "Área del proyecto (m²)", value=10000, min_value=1
     )
 
-form = st.form("my_form")
 
 for i in range (5):
     precio_i = st.sidebar.form.number_input(
@@ -27,7 +26,7 @@ for i in range (5):
         )
 
 # Now add a submit button to the form:
-form.form_submit_button("Guardar precios")
+st.sidebar.form.form_submit_button("Guardar precios")
 
 
 # data_heads = data.columns.values
