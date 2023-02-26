@@ -23,6 +23,10 @@ with st.sidebar.form(key="Form1"):
             "Área del proyecto (m²)", value=10000, min_value=1
         )
 
+    st.header("Calificación del refuerzo")
+    
+    st.header("Precios de barras")
+
     for name in na_weight:
         precio_i = st.number_input("Precio barra " + name + '(COP)', value=5000, min_value=1)
 
