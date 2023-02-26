@@ -3,6 +3,7 @@ Module for processing pandas' data frame
 
 """
 
+
 def new_analysis_constructor():
     """Function that initiliaze analysisi objects
 
@@ -57,7 +58,7 @@ def asign_values(result, data_heads, data_analysis):
         # First column is the name
         if i == 0:
             continue
-        
+
         # general weights
         if "Peso" in col or "peso" in col:
             # Stirups weigth
@@ -79,18 +80,18 @@ def asign_values(result, data_heads, data_analysis):
                 val1 = "total"
                 data_analysis["steel_weight"][val1] = result[i]
                 continue
-            
+
             # Filling information
             data_analysis["steel_weight"][val1][calibre] = result[i]
             continue
-        
+
         # For mechanical heads
         if "Cabezas" in col or "cabezas" in col:
             # Total heads
             if "Cantidad" in col:
                 data_analysis["quantities"]["mechanical_heads"]["total"] = result[i]
                 continue
-            
+
             # Mechanical head detail for each bar size
             data_analysis["quantities"]["mechanical_heads"][calibre] = result[i]
             continue
@@ -105,7 +106,7 @@ def asign_values(result, data_heads, data_analysis):
             # Mechanical splices detail for each bar size
             data_analysis["quantities"]["mechanical_splices"][calibre] = result[i]
             continue
-        
+
         # For number of bars
         if (
             "Cantidad Barras" in col
@@ -123,11 +124,11 @@ def asign_values(result, data_heads, data_analysis):
                 data_analysis["quantities"]["pieces"]["total"] += result[i]
                 data_analysis["quantities"]["pieces"]["stirrups"] = result[i]
                 continue
-            
+
             # Total pieces for each bar size and type
             data_analysis["quantities"]["pieces"][bar_type + calibre] = result[i]
             continue
-        
+
         # For number of figures
         if "Figuras" in col:
             # Total longitudinal bars
@@ -136,9 +137,84 @@ def asign_values(result, data_heads, data_analysis):
             # Total stirrups
             if "RefTrans" in col:
                 data_analysis["quantities"]["figures"]["stirrups"] = result[i]
-            
+
             # Total of figures
             data_analysis["quantities"]["figures"]["total"] += result[i]
             continue
 
     return data_analysis
+
+
+def results_constructor(data):
+    """Function that builds general data
+
+    Args:
+        data (pandas dataframe)
+
+    Returns:
+        dict: general results compilation
+        lists: names of used bars
+    """
+
+    # Column namess
+    data_heads = data.columns.values
+    # Analysisis values
+    data_values = data.values
+
+    # Initializing output
+    results = {}
+    names_for_weight = []
+    names_for_splices = []
+    names_for_heads = []
+
+    # For each analysis
+    for data_i in data_values:
+        # Object constructor
+        analysis_results = new_analysis_constructor()
+        # Values
+        analysis_results = asign_values(data_i, data_heads, analysis_results)
+        # Updating result dict
+        results[data_i[0]] = analysis_results
+
+        # Computing names of used bars
+        names_for_weight = list(
+            set(
+                [
+                    name
+                    for name in [
+                        *names_for_weight,
+                        *analysis_results["steel_weight"]["longitudinal"],
+                        *analysis_results["steel_weight"]["stirrups"],
+                    ]
+                    if name != "total"
+                ]
+            )
+        )
+        # Computing names of used bars in splices
+        names_for_splices = list(
+            set(
+                [
+                    name
+                    for name in [
+                        *names_for_splices,
+                        *analysis_results["quantities"]["mechanical_splices"],
+                    ]
+                    if name != "total"
+                ]
+            )
+        )
+        # Computing names of used bars in heads
+        names_for_heads = list(
+            set(
+                [
+                    name
+                    for name in [
+                        *names_for_heads,
+                        *analysis_results["quantities"]["mechanical_heads"],
+                    ]
+                    if name != "total"
+                ]
+            )
+        )
+
+    return results, names_for_weight, names_for_splices, names_for_heads
