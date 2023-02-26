@@ -24,6 +24,6 @@ with st.sidebar.form(key="Form1"):
         )
 
     for name in na_weight:
-        precio_i = st.number_input("Peso barra " + name, value=5000, min_value=1)
+        precio_i = st.number_input("Precio barra " + name + '(COP)', value=5000, min_value=1)
 
     submitted1 = st.form_submit_button(label="Guardar precios")
