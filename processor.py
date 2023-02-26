@@ -28,6 +28,13 @@ def new_analysis_constructor():
             "blueprints": 0,
         },
         "price": 0,
+        "scores": {
+            "by_weigth":0,
+            "by_price": 0,
+            "by_pieces":0,
+            "by_figures":0,
+            "total":0,
+        }
     }
 
     return data_analysis
