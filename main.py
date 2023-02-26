@@ -22,11 +22,13 @@ if data is not None:
 import streamlit as st
 
 form = st.form("my_form")
-form.slider("Inside the form")
-st.slider("Outside the form")
+
+peso_i = form.number_input(
+        "Peso barra", value=5000, min_value=1
+    )
 
 # Now add a submit button to the form:
-form.form_submit_button("Submit")
+form.form_submit_button("Guardar precios")
 
 
 # data_heads = data.columns.values
