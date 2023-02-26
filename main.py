@@ -19,13 +19,12 @@ if data is not None:
         "Área del proyecto (m²)", value=10000, min_value=1
     )
 
-import streamlit as st
-
 form = st.form("my_form")
 
-peso_i = form.number_input(
-        "Peso barra", value=5000, min_value=1
-    )
+for i in range (5):
+    precio_i = form.number_input(
+            "Peso barra " + i, value=5000, min_value=1
+        )
 
 # Now add a submit button to the form:
 form.form_submit_button("Guardar precios")
