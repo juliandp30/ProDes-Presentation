@@ -18,13 +18,20 @@ results, na_weight, na_splices, na_heads = pr.results_constructor(data)
 
 with st.sidebar.form(key="Form1"):
 
+    st.header("Información general")
+
     if data is not None:
         area_proyecto = st.number_input(
             "Área del proyecto (m²)", value=10000, min_value=1
         )
 
     st.header("Calificación del refuerzo")
-    
+
+    st.number_input("Puntaje por Peso", value=5, min_value=1)
+    st.number_input("Puntaje por Precio", value=5, min_value=1)
+    st.number_input("Puntaje por #Figuras", value=5, min_value=1)
+    st.number_input("Puntaje por #Piezas", value=5, min_value=1)
+
     st.header("Precios de barras")
 
     for name in na_weight:
