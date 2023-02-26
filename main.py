@@ -22,7 +22,7 @@ if data is not None:
 form = st.form("my_form")
 
 for i in range (5):
-    precio_i = form.number_input(
+    precio_i = st.sidebar.form.number_input(
             "Peso barra " + str(i), value=5000, min_value=1
         )
 
