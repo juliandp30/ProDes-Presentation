@@ -33,8 +33,8 @@ def new_analysis_constructor():
     return data_analysis
 
 
-def asign_values(result, data_heads, data_analysis):
-    """Function that asigns analysis data in the dictionary
+def assign_values(result, data_heads, data_analysis):
+    """Function that assigns analysis data in the dictionary
 
     Args:
         result (array): anaylisis results from data frame
@@ -172,7 +172,7 @@ def results_constructor(data):
         # Object constructor
         analysis_results = new_analysis_constructor()
         # Values
-        analysis_results = asign_values(data_i, data_heads, analysis_results)
+        analysis_results = assign_values(data_i, data_heads, analysis_results)
         # Updating result dict
         results[data_i[0]] = analysis_results
 
