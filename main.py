@@ -25,6 +25,7 @@ with st.sidebar.form(key="Form1"):
             "Área del proyecto (m²)", value=10000, min_value=1
         )
 
+    st.header("--------------------------")
     st.header("Calificación del refuerzo")
 
     st.number_input("Puntaje por Peso", value=5, min_value=1)
@@ -32,6 +33,7 @@ with st.sidebar.form(key="Form1"):
     st.number_input("Puntaje por #Figuras", value=5, min_value=1)
     st.number_input("Puntaje por #Piezas", value=5, min_value=1)
 
+    st.header("--------------------------")
     st.header("Precios de barras")
 
     for name in na_weight:
