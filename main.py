@@ -23,7 +23,7 @@ form = st.form("my_form")
 
 for i in range (5):
     precio_i = form.number_input(
-            "Peso barra " + i, value=5000, min_value=1
+            "Peso barra " + str(i), value=5000, min_value=1
         )
 
 # Now add a submit button to the form:
