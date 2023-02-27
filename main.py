@@ -35,21 +35,21 @@ with st.sidebar.form(key="Form1"):
     st.number_input("Puntaje por #Planos", value=5, min_value=1)
 
     st.header("")
-    st.header("Precios de barras")
+    st.header("Precios de barras (COP)")
 
     for name in na_weight:
-        st.number_input("Precio barra " + name + "(COP)", value=5000, min_value=1)
+        st.number_input(name, value=5000, min_value=1)
 
     st.header("")
-    st.header("Precios de empalmes")
+    st.header("Precios de empalmes (COP)")
 
     for name in na_splices:
-        st.number_input("Precio empalme " + name + "(COP)", value=12000, min_value=1)
+        st.number_input(name, value=12000, min_value=1)
 
     st.header("")
-    st.header("Precios de cabezas")
+    st.header("Precios de cabezas (COP)")
 
     for name in na_heads:
-        st.number_input("Precio cabeza " + name + "(COP)", value=15000, min_value=1)
+        st.number_input(name, value=15000, min_value=1)
 
     submitted1 = st.form_submit_button(label="Guardar precios")
