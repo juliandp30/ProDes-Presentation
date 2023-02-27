@@ -21,7 +21,7 @@ results, na_weight, na_splices, na_heads = pr.results_constructor(data)
 with st.sidebar.form(key="Form1"):
 
     st.header("Información general")
-    
+
     submitted1 = st.form_submit_button(label="Guardar datos")
 
     if data is not None:
@@ -29,7 +29,6 @@ with st.sidebar.form(key="Form1"):
             "Área del proyecto (m²)", value=10000, min_value=1
         )
 
-    st.header("")
     st.header("Calificación del refuerzo")
 
     scores_data = dict(
