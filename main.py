@@ -69,7 +69,6 @@ if submitted1:
     fig = px.scatter(
         x = list_gh['keys'],
         y = list_gh['by_score'],
-        labels={"value": "", "variable": "Indicador"},
         height=700,
     )
     fig.update_layout(font_size=20, plot_bgcolor='rgba(180, 180, 180, 0.3)')
@@ -84,11 +83,62 @@ if submitted1:
     fig = px.scatter(
         x = list_gh['keys'],
         y = list_gh['by_weigth'],
-        labels={"value": "", "variable": "Indicador"},
         height=700,
     )
     fig.update_layout(font_size=20, plot_bgcolor='rgba(180, 180, 180, 0.3)')
     fig.update_xaxes(title="Opciones de refuerzo", visible=True, showticklabels=False)
     fig.update_yaxes(title="Peso total", visible=True, showticklabels=False)
+
+    st.plotly_chart(fig, use_container_width=True)
+
+    st.title("Precio del refuerzo (materiales)")
+
+    fig = px.scatter(
+        x = list_gh['keys'],
+        y = list_gh['by_price'],
+        height=700,
+    )
+    fig.update_layout(font_size=20, plot_bgcolor='rgba(180, 180, 180, 0.3)')
+    fig.update_xaxes(title="Opciones de refuerzo", visible=True, showticklabels=False)
+    fig.update_yaxes(title="Precio", visible=True, showticklabels=False)
+
+    st.plotly_chart(fig, use_container_width=True)
+
+    st.title("Colocación de piezas de refuerzo")
+
+    fig = px.scatter(
+        x = list_gh['keys'],
+        y = list_gh['by_pieces'],
+        height=700,
+    )
+    fig.update_layout(font_size=20, plot_bgcolor='rgba(180, 180, 180, 0.3)')
+    fig.update_xaxes(title="Opciones de refuerzo", visible=True, showticklabels=False)
+    fig.update_yaxes(title="# Piezas", visible=True, showticklabels=False)
+
+    st.plotly_chart(fig, use_container_width=True)
+
+    st.title("Gestión del inventario de la obra")
+
+    fig = px.scatter(
+        x = list_gh['keys'],
+        y = list_gh['by_figures'],
+        height=700,
+    )
+    fig.update_layout(font_size=20, plot_bgcolor='rgba(180, 180, 180, 0.3)')
+    fig.update_xaxes(title="Opciones de refuerzo", visible=True, showticklabels=False)
+    fig.update_yaxes(title="# Figuras", visible=True, showticklabels=False)
+
+    st.plotly_chart(fig, use_container_width=True)
+
+    st.title("Curva de aprendizaje")
+
+    fig = px.scatter(
+        x = list_gh['keys'],
+        y = list_gh['by_blueprints'],
+        height=700,
+    )
+    fig.update_layout(font_size=20, plot_bgcolor='rgba(180, 180, 180, 0.3)')
+    fig.update_xaxes(title="Opciones de refuerzo", visible=True, showticklabels=False)
+    fig.update_yaxes(title="# Planos", visible=True, showticklabels=False)
 
     st.plotly_chart(fig, use_container_width=True)
