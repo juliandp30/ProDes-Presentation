@@ -32,6 +32,7 @@ with st.sidebar.form(key="Form1"):
     st.number_input("Puntaje por Precio", value=5, min_value=1)
     st.number_input("Puntaje por #Figuras", value=5, min_value=1)
     st.number_input("Puntaje por #Piezas", value=5, min_value=1)
+    st.number_input("Puntaje por #Planos", value=5, min_value=1)
 
     st.header("")
     st.header("Precios de barras")

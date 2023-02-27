@@ -29,12 +29,12 @@ def new_analysis_constructor():
         },
         "price": 0,
         "scores": {
-            "by_weigth":0,
+            "by_weigth": 0,
             "by_price": 0,
-            "by_pieces":0,
-            "by_figures":0,
-            "total":0,
-        }
+            "by_pieces": 0,
+            "by_figures": 0,
+            "total": 0,
+        },
     }
 
     return data_analysis
@@ -148,6 +148,11 @@ def assign_values(result, data_heads, data_analysis):
             # Total of figures
             data_analysis["quantities"]["figures"]["total"] += result[i]
             continue
+
+        # For number of blueprints
+        if "Planos" in col or "planos" in col:
+            # Total of figures
+            data_analysis["quantities"]["blueprints"] += result[i]
 
     return data_analysis
 
