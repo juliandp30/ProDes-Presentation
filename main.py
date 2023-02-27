@@ -39,21 +39,18 @@ with st.sidebar.form(key="Form1"):
         by_blueprints=st.number_input("Puntaje por #Planos", value=5, min_value=1),
     )
 
-    st.header("")
     st.header("Precios de barras (COP)")
 
     bars = {}
     for name in na_weight:
         bars[name] = st.number_input(name, value=5000, min_value=1)
 
-    st.header("")
     st.header("Precios de empalmes (COP)")
 
     splices = {}
     for name in na_splices:
         splices[name] = st.number_input(name, value=12000, min_value=1)
 
-    st.header("")
     st.header("Precios de cabezas (COP)")
 
     heads = {}
