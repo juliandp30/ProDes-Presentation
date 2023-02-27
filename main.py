@@ -67,16 +67,16 @@ if submitted1:
     results = scores.assign_scores(results, scores_data)
     list_gh = pr.get_lists_to_graph(results)
 
-st.title("Puntajes de las opciones de refuerzo")
+    st.title("Puntajes de las opciones de refuerzo")
 
-fig = px.scatter(
-    x = list_gh['keys'],
-    y = list_gh['by_score'],
-    labels={"value": "", "variable": "Indicador"},
-    height=700,
-)
-fig.update_layout(font_size=20)
-fig.update_xaxes(title="Opciones de refuerzo", visible=True, showticklabels=False)
-fig.update_yaxes(title="Puntaje", visible=True, showticklabels=False)
+    fig = px.scatter(
+        x = list_gh['keys'],
+        y = list_gh['by_score'],
+        labels={"value": "", "variable": "Indicador"},
+        height=700,
+    )
+    fig.update_layout(font_size=20)
+    fig.update_xaxes(title="Opciones de refuerzo", visible=True, showticklabels=False)
+    fig.update_yaxes(title="Puntaje", visible=True, showticklabels=False)
 
-st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, use_container_width=True)
