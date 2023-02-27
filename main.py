@@ -61,14 +61,11 @@ with st.sidebar.form(key="Form1"):
 
     submitted1 = st.form_submit_button(label="Guardar precios")
 
-if True:
+if submitted1:
     results = pr.computing_unit_weigths(results, building_area)
     results = prices.assign_prices_global(results, bars, splices, heads)
     results = scores.assign_scores(results, scores_data)
     list_gh = pr.get_lists_to_graph(results)
-
-print("a")
-
 
 st.title("Puntajes de las opciones de refuerzo")
 
