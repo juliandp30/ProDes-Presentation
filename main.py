@@ -28,31 +28,31 @@ with st.sidebar.form(key="Form1"):
     st.header("")
     st.header("Calificación del refuerzo")
 
-    st.number_input("Puntaje por Peso", value=5, min_value=1)
-    st.number_input("Puntaje por Precio", value=5, min_value=1)
-    st.number_input("Puntaje por #Figuras", value=5, min_value=1)
-    st.number_input("Puntaje por #Piezas", value=5, min_value=1)
-    st.number_input("Puntaje por #Planos", value=5, min_value=1)
+    score_weight = st.number_input("Puntaje por Peso", value=5, min_value=1)
+    score_price = st.number_input("Puntaje por Precio", value=5, min_value=1)
+    score_figures = st.number_input("Puntaje por #Figuras", value=5, min_value=1)
+    score_pieces = st.number_input("Puntaje por #Piezas", value=5, min_value=1)
+    score_blueprints = st.number_input("Puntaje por #Planos", value=5, min_value=1)
 
     st.header("")
     st.header("Precios de barras (COP)")
 
+    bars = {}
     for name in na_weight:
-        st.number_input(name, value=5000, min_value=1)
+        bars[name] = st.number_input(name, value=5000, min_value=1)
 
     st.header("")
     st.header("Precios de empalmes (COP)")
 
+    splices = {}
     for name in na_splices:
-        st.number_input(name, value=12000, min_value=1)
+        splices[name] = st.number_input(name, value=12000, min_value=1)
 
     st.header("")
     st.header("Precios de cabezas (COP)")
 
+    heads = {}
     for name in na_heads:
-        st.number_input(name, value=15000, min_value=1)
+        heads[name] = st.number_input(name, value=15000, min_value=1)
 
     submitted1 = st.form_submit_button(label="Guardar precios")
-
-if submitted1:
-    st.write(submitted1)
