@@ -22,7 +22,7 @@ with st.sidebar.form(key="Form1"):
 
     st.header("Información general")
 
-    submitted1 = st.form_submit_button(label="Guardar datos")
+    submitted1 = st.form_submit_button(label="Generar reporte")
 
     if data is not None:
         building_area = st.number_input(
