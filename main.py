@@ -53,7 +53,7 @@ with st.sidebar.form(key="Form1"):
     st.header("Precios de cabezas")
 
     for name in na_heads:
-        precio_i = st.number_input(
+        st.number_input(
             "Precio cabeza " + name + "(COP)", value=15000, min_value=1
         )
         
