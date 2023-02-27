@@ -54,5 +54,5 @@ with st.sidebar.form(key="Form1"):
 
     submitted1 = st.form_submit_button(label="Guardar precios")
 
-
-print(submitted1)
+if submitted1:
+    st.write(submitted1)
