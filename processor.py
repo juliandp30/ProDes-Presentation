@@ -249,3 +249,40 @@ def computing_unit_weigths(results, area):
         res["steel_weight"]["unit_weight"] = res["steel_weight"]["total"] * 1000 / area
 
     return results
+
+
+def get_lists_to_graph(results):
+    """Lists for graphical output
+
+    Returns:
+        dict: lists
+    """
+
+    # Data lists
+    list_weigth = []
+    list_price = []
+    list_npieces = []
+    list_nfigures = []
+    list_nblueprints = []
+    list_score = []
+
+    # For each analysis
+    for key, res in results.items():
+        list_weigth.append([key, res["steel_weight"]["total"]])
+        list_price.append([key, res["price"]])
+        list_nfigures.append([key, res["quantities"]["figures"]["total"]])
+        list_npieces.append([key, res["quantities"]["pieces"]["total"]])
+        list_nblueprints.append([key, res["quantities"]["blueprints"]])
+        list_score.append([key, res["scores"]["total"]])
+
+    # Dictionary of lists
+    lists = dict(
+        by_weigth=list_weigth,
+        by_price=list_price,
+        by_pieces=list_npieces,
+        by_figures=list_nfigures,
+        by_blueprints=list_nblueprints,
+        by_score=list_score,
+    )
+
+    return lists

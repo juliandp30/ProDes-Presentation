@@ -61,9 +61,24 @@ with st.sidebar.form(key="Form1"):
 
     submitted1 = st.form_submit_button(label="Guardar precios")
 
-
 if True:
     results = pr.computing_unit_weigths(results, building_area)
     results = prices.assign_prices_global(results, bars, splices, heads)
     results = scores.assign_scores(results, scores_data)
+    list_gh = pr.get_lists_to_graph(results)
 
+print("a")
+
+
+st.title("Puntajes de las opciones de refuerzo")
+
+fig = px.bar(
+    list_gh['by_score'],
+    x="Opciones de refuerzo",
+    y="Puntaje",
+    labels={"value": "", "variable": "Indicador"},
+    height=700,
+)
+fig.update_xaxes(tickangle=270)
+fig.update_layout(font_size=20)
+fig.update_yaxes(title="", visible=True, showticklabels=False)
