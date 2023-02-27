@@ -53,3 +53,5 @@ with st.sidebar.form(key="Form1"):
         st.number_input(name, value=15000, min_value=1)
 
     submitted1 = st.form_submit_button(label="Guardar precios")
+
+    print(submitted1)
