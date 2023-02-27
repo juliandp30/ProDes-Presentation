@@ -78,9 +78,8 @@ fig = px.scatter(
     labels={"value": "", "variable": "Indicador"},
     height=700,
 )
-fig.update_xaxes(tickangle=270)
 fig.update_layout(font_size=20)
-fig.update_xaxes(title="Opciones de refuerzo", visible=False, showticklabels=False)
+fig.update_xaxes(title="Opciones de refuerzo", visible=True, showticklabels=False)
 fig.update_yaxes(title="Puntaje", visible=True, showticklabels=False)
 
 st.plotly_chart(fig, use_container_width=True)
