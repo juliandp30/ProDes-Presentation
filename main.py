@@ -21,6 +21,8 @@ results, na_weight, na_splices, na_heads = pr.results_constructor(data)
 with st.sidebar.form(key="Form1"):
 
     st.header("Información general")
+    
+    submitted1 = st.form_submit_button(label="Guardar datos")
 
     if data is not None:
         building_area = st.number_input(
@@ -59,7 +61,6 @@ with st.sidebar.form(key="Form1"):
     for name in na_heads:
         heads[name] = st.number_input(name, value=15000, min_value=1)
 
-    submitted1 = st.form_submit_button(label="Guardar precios")
 
 if submitted1:
     results = pr.computing_unit_weigths(results, building_area)
