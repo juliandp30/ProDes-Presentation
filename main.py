@@ -33,7 +33,7 @@ with st.sidebar.form(key="Form1"):
     st.number_input("Puntaje por #Figuras", value=5, min_value=1)
     st.number_input("Puntaje por #Piezas", value=5, min_value=1)
 
-    st.header("-----------------------------------------")
+    st.header("")
     st.header("Precios de barras")
 
     for name in na_weight:
@@ -41,7 +41,7 @@ with st.sidebar.form(key="Form1"):
             "Precio barra " + name + "(COP)", value=5000, min_value=1
         )
 
-    st.header("-----------------------------------------")
+    st.header("")
     st.header("Precios de empalmes")
 
     for name in na_splices:
@@ -49,7 +49,7 @@ with st.sidebar.form(key="Form1"):
             "Precio empalme " + name + "(COP)", value=12000, min_value=1
         )
 
-    st.header("-----------------------------------------")
+    st.header("")
     st.header("Precios de cabezas")
 
     for name in na_heads:
