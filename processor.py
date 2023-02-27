@@ -272,7 +272,7 @@ def get_lists_to_graph(results):
     for key, res in results.items():
         keys.append(key)
         list_weigth.append(res["steel_weight"]["total"])
-        list_weigth.append(res["steel_weight"]["unit_weight"])
+        list_unitwe.append(res["steel_weight"]["unit_weight"])
         list_price.append(res["price"])
         list_nfigures.append(res["quantities"]["figures"]["total"])
         list_npieces.append(res["quantities"]["pieces"]["total"])
@@ -283,7 +283,7 @@ def get_lists_to_graph(results):
     lists = dict(
         keys = keys,
         by_weigth=list_weigth,
-        by_unitweigth=list_weigth,
+        by_unitweigth=list_unitwe,
         by_price=list_price,
         by_pieces=list_npieces,
         by_figures=list_nfigures,
