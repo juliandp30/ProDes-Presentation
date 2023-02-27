@@ -259,6 +259,7 @@ def get_lists_to_graph(results):
     """
 
     # Data lists
+    keys = []
     list_weigth = []
     list_price = []
     list_npieces = []
@@ -268,15 +269,17 @@ def get_lists_to_graph(results):
 
     # For each analysis
     for key, res in results.items():
-        list_weigth.append([key, res["steel_weight"]["total"]])
-        list_price.append([key, res["price"]])
-        list_nfigures.append([key, res["quantities"]["figures"]["total"]])
-        list_npieces.append([key, res["quantities"]["pieces"]["total"]])
-        list_nblueprints.append([key, res["quantities"]["blueprints"]])
-        list_score.append([key, res["scores"]["total"]])
+        keys.append(key)
+        list_weigth.append(res["steel_weight"]["total"])
+        list_price.append(res["price"])
+        list_nfigures.append(res["quantities"]["figures"]["total"])
+        list_npieces.append(res["quantities"]["pieces"]["total"])
+        list_nblueprints.append(res["quantities"]["blueprints"])
+        list_score.append(res["scores"]["total"])
 
     # Dictionary of lists
     lists = dict(
+        keys = keys,
         by_weigth=list_weigth,
         by_price=list_price,
         by_pieces=list_npieces,

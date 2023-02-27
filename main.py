@@ -72,8 +72,9 @@ print("a")
 
 st.title("Puntajes de las opciones de refuerzo")
 
-fig = px.bar(
-    list_gh['by_score'],
+fig = px.scatter(
+    x = list_gh['keys'],
+    y = list_gh['by_score'],
     labels={"value": "", "variable": "Indicador"},
     height=700,
 )
