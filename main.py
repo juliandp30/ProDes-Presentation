@@ -74,8 +74,6 @@ st.title("Puntajes de las opciones de refuerzo")
 
 fig = px.bar(
     list_gh['by_score'],
-    x="Opciones de refuerzo",
-    y="Puntaje",
     labels={"value": "", "variable": "Indicador"},
     height=700,
 )
