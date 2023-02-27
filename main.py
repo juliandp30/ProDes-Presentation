@@ -3,6 +3,8 @@ import streamlit as st
 import plotly.express as px
 
 import processor as pr
+import computing_prices as prices
+import computing_scores as scores
 
 st.set_page_config(page_title="Análisis de refuerzo", layout="wide")
 area_proyecto = 10000
@@ -21,18 +23,20 @@ with st.sidebar.form(key="Form1"):
     st.header("Información general")
 
     if data is not None:
-        area_proyecto = st.number_input(
+        building_area = st.number_input(
             "Área del proyecto (m²)", value=10000, min_value=1
         )
 
     st.header("")
     st.header("Calificación del refuerzo")
 
-    score_weight = st.number_input("Puntaje por Peso", value=5, min_value=1)
-    score_price = st.number_input("Puntaje por Precio", value=5, min_value=1)
-    score_figures = st.number_input("Puntaje por #Figuras", value=5, min_value=1)
-    score_pieces = st.number_input("Puntaje por #Piezas", value=5, min_value=1)
-    score_blueprints = st.number_input("Puntaje por #Planos", value=5, min_value=1)
+    scores_data = dict(
+        by_weigth=st.number_input("Puntaje por Peso", value=5, min_value=1),
+        by_price=st.number_input("Puntaje por Precio", value=5, min_value=1),
+        by_figures=st.number_input("Puntaje por #Figuras", value=5, min_value=1),
+        by_pieces=st.number_input("Puntaje por #Piezas", value=5, min_value=1),
+        by_blueprints=st.number_input("Puntaje por #Planos", value=5, min_value=1),
+    )
 
     st.header("")
     st.header("Precios de barras (COP)")
@@ -56,3 +60,10 @@ with st.sidebar.form(key="Form1"):
         heads[name] = st.number_input(name, value=15000, min_value=1)
 
     submitted1 = st.form_submit_button(label="Guardar precios")
+
+
+if True:
+    results = pr.computing_unit_weigths(results, building_area)
+    results = prices.assign_prices_global(results, bars, splices, heads)
+    results = scores.assign_scores(results, scores_data)
+

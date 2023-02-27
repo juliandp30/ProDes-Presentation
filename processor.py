@@ -33,6 +33,7 @@ def new_analysis_constructor():
             "by_price": 0,
             "by_pieces": 0,
             "by_figures": 0,
+            "by_blueprints": 0,
             "total": 0,
         },
     }
@@ -230,3 +231,21 @@ def results_constructor(data):
         )
 
     return results, names_for_weight, names_for_splices, names_for_heads
+
+
+def computing_unit_weigths(results, area):
+    """Function that computes unit weights
+
+    Args:
+        results (dict): analysis results
+        area (float): building area
+
+    Returns:
+        results: updated dict
+    """
+
+    # Computing unit weight for each analysis
+    for res in results.values():
+        res["steel_weight"]["unit_weight"] = res["steel_weight"]["total"] * 1000 / area
+
+    return results
