@@ -64,6 +64,20 @@ if submitted1:
     results = scores.assign_scores(results, scores_data)
     list_gh = pr.get_lists_to_graph(results)
 
+    st.title("Puntaje Vs. Precio")
+
+    fig = px.scatter(
+        x = list_gh['by_price'],
+        y = list_gh['by_score'],
+        height=700,
+    )
+    fig.update_layout(font_size=20, plot_bgcolor='rgba(180, 180, 180, 0.3)')
+    fig.update_xaxes(title="Precio", visible=True, showticklabels=False)
+    fig.update_yaxes(title="Puntaje", visible=True, showticklabels=False)
+
+    st.plotly_chart(fig, use_container_width=True)
+    
+    
     st.title("Puntajes de las opciones de refuerzo")
 
     fig = px.scatter(
