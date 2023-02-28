@@ -11,7 +11,7 @@ def score_1Dmodel(data, value, min_score=1, max_score=10):
     m = (Y2 - Y1) / (X2 - X1)
 
     # New Y
-    score = m * (value - X1) + Y1
+    score = m * (value - X1) + Y1 if m != 0 else Y1
 
     return score
 
