@@ -8,7 +8,7 @@ def score_1Dmodel(data, value, min_score=1, max_score=10):
     # Data info for 1D model
     Y1, Y2, X1, X2 = max_score, min_score, min(data), max(data)
     # Line-Slope
-    m = (Y2 - Y1) / (X2 - X1)
+    m = (Y2 - Y1) / (X2 - X1) if (X2 - X1) != 0 else 0
 
     # New Y
     score = m * (value - X1) + Y1 if m != 0 else Y1
