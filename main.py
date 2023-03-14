@@ -26,7 +26,7 @@ with st.sidebar.form(key="Form1"):
 
     if data is not None:
         building_area = st.number_input(
-            "Área del proyecto (m²)", value=10000, min_value=1
+            "Área del proyecto (m²)", value=10320, min_value=1
         )
 
     st.header("Calificación del refuerzo")
