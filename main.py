@@ -7,7 +7,7 @@ import computing_prices as prices
 import computing_scores as scores
 
 st.set_page_config(page_title="Análisis de refuerzo", layout="wide")
-area_proyecto = 10000
+area_proyecto = 10320
 
 data = pd.read_excel("./defaults.xlsx")
 
