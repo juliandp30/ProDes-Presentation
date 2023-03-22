@@ -43,19 +43,19 @@ with st.sidebar.form(key="Form1"):
 
     bars = {}
     for name in na_weight:
-        bars[name] = st.number_input(name, value=5000, min_value=1)
+        bars[name] = st.number_input(name, value=4701, min_value=1)
 
     st.header("Precios de empalmes (COP)")
 
     splices = {}
     for name in na_splices:
-        splices[name] = st.number_input(name, value=12000, min_value=1)
+        splices[name] = st.number_input(name, value=12566, min_value=1)
 
     st.header("Precios de cabezas (COP)")
 
     heads = {}
     for name in na_heads:
-        heads[name] = st.number_input(name, value=15000, min_value=1)
+        heads[name] = st.number_input(name, value=17429, min_value=1)
 
 
 if submitted1:
@@ -64,19 +64,6 @@ if submitted1:
     results = scores.assign_scores(results, scores_data)
     list_gh = pr.get_lists_to_graph(results)
 
-    st.title("Puntaje Vs. Precio")
-
-    fig = px.scatter(
-        x = list_gh['by_price'],
-        y = list_gh['by_score'],
-        height=700,
-    )
-    fig.update_layout(font_size=20, plot_bgcolor='rgba(180, 180, 180, 0.3)')
-    fig.update_xaxes(title="Precio", visible=True, showticklabels=False)
-    fig.update_yaxes(title="Puntaje", visible=True, showticklabels=False)
-
-    st.plotly_chart(fig, use_container_width=True)
-    
     
     st.title("Puntajes de las opciones de refuerzo")
 
@@ -87,6 +74,34 @@ if submitted1:
     )
     fig.update_layout(font_size=20, plot_bgcolor='rgba(180, 180, 180, 0.3)')
     fig.update_xaxes(title="Opciones de refuerzo", visible=True, showticklabels=False)
+    fig.update_yaxes(title="Puntaje", visible=True, showticklabels=False)
+
+    st.plotly_chart(fig, use_container_width=True)
+
+
+    st.title("Precio del refuerzo (materiales)")
+
+    fig = px.scatter(
+        x = list_gh['keys'],
+        y = list_gh['by_price'],
+        height=700,
+    )
+    fig.update_layout(font_size=20, plot_bgcolor='rgba(180, 180, 180, 0.3)')
+    fig.update_xaxes(title="Opciones de refuerzo", visible=True, showticklabels=False)
+    fig.update_yaxes(title="Precio", visible=True, showticklabels=False)
+
+    st.plotly_chart(fig, use_container_width=True)
+
+
+    st.title("Puntaje Vs. Precio")
+
+    fig = px.scatter(
+        x = list_gh['by_price'],
+        y = list_gh['by_score'],
+        height=700,
+    )
+    fig.update_layout(font_size=20, plot_bgcolor='rgba(180, 180, 180, 0.3)')
+    fig.update_xaxes(title="Precio", visible=True, showticklabels=False)
     fig.update_yaxes(title="Puntaje", visible=True, showticklabels=False)
 
     st.plotly_chart(fig, use_container_width=True)
@@ -106,7 +121,6 @@ if submitted1:
     st.plotly_chart(fig, use_container_width=True)
 
     
-    
     st.title("Tenores de refuerzo")
 
     fig = px.scatter(
@@ -117,21 +131,6 @@ if submitted1:
     fig.update_layout(font_size=20, plot_bgcolor='rgba(180, 180, 180, 0.3)')
     fig.update_xaxes(title="Opciones de refuerzo", visible=True, showticklabels=False)
     fig.update_yaxes(title="Tenor", visible=True, showticklabels=False)
-
-    st.plotly_chart(fig, use_container_width=True)
-
-
-    
-    st.title("Precio del refuerzo (materiales)")
-
-    fig = px.scatter(
-        x = list_gh['keys'],
-        y = list_gh['by_price'],
-        height=700,
-    )
-    fig.update_layout(font_size=20, plot_bgcolor='rgba(180, 180, 180, 0.3)')
-    fig.update_xaxes(title="Opciones de refuerzo", visible=True, showticklabels=False)
-    fig.update_yaxes(title="Precio", visible=True, showticklabels=False)
 
     st.plotly_chart(fig, use_container_width=True)
 
