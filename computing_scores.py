@@ -69,7 +69,6 @@ def assign_scores(results, scores_data):
         # Values of the results
         values = dict(
             by_weigth=res["steel_weight"]["total"],
-            by_price=res["price"],
             by_pieces=res["quantities"]["pieces"]["total"],
             by_figures=res["quantities"]["figures"]["total"],
             by_blueprints=res["quantities"]["blueprints"],
