@@ -25,7 +25,6 @@ def get_lists(results):
 
     # Data lists
     list_weigth = []
-    list_price = []
     list_npieces = []
     list_nfigures = []
     list_nblueprints = []
@@ -40,7 +39,6 @@ def get_lists(results):
     # Dictionary that will be returned
     lists = dict(
         by_weigth=list_weigth,
-        by_price=list_price,
         by_pieces=list_npieces,
         by_figures=list_nfigures,
         by_blueprints=list_nblueprints,
