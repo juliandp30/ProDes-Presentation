@@ -33,7 +33,6 @@ def get_lists(results):
     # For each analysis
     for res in results.values():
         list_weigth.append(res["steel_weight"]["total"])
-        list_price.append(res["price"])
         list_nfigures.append(res["quantities"]["figures"]["total"])
         list_npieces.append(res["quantities"]["pieces"]["total"])
         list_nblueprints.append(res["quantities"]["blueprints"])
