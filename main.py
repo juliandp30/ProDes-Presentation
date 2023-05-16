@@ -129,7 +129,7 @@ if submitted1:
     )
     fig.update_layout(font_size=20, plot_bgcolor='rgba(180, 180, 180, 0.3)')
     fig.update_xaxes(title="Opciones de refuerzo", visible=True, showticklabels=False)
-    fig.update_yaxes(title="# Piezas", visible=True, showticklabels=True, dtick=2000)
+    fig.update_yaxes(title="# Piezas", visible=True, showticklabels=True, dtick=500)
 
     st.plotly_chart(fig, use_container_width=True)
 
@@ -143,7 +143,7 @@ if submitted1:
     )
     fig.update_layout(font_size=20, plot_bgcolor='rgba(180, 180, 180, 0.3)')
     fig.update_xaxes(title="Opciones de refuerzo", visible=True, showticklabels=False)
-    fig.update_yaxes(title="# Figuras", visible=True, showticklabels=True, dtick=5)
+    fig.update_yaxes(title="# Figuras", visible=True, showticklabels=True, dtick=10)
 
     st.plotly_chart(fig, use_container_width=True)
 
