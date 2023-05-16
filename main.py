@@ -100,7 +100,7 @@ if submitted1:
         height=700,
     )
     fig.update_layout(font_size=20, plot_bgcolor='rgba(180, 180, 180, 0.3)')
-    fig.update_xaxes(title="Precio", visible=True, showticklabels=False)
+    fig.update_xaxes(title="Precio", visible=True, showticklabels=True)
     fig.update_yaxes(title="Puntaje", visible=True, showticklabels=True)
 
     st.plotly_chart(fig, use_container_width=True)
