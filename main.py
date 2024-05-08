@@ -127,7 +127,7 @@ if submitted1:
     fig.update_yaxes(
         title="Tenor",
         visible=True,
-        showticklabels=False,
+        # showticklabels=False,
         range=[
             min(list_gh["by_unitweigth"]) * 0.8,
             max(list_gh["by_unitweigth"]) * 1.2,
