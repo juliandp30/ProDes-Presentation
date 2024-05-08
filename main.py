@@ -119,6 +119,19 @@ if submitted1:
 
     st.plotly_chart(fig, use_container_width=True)
 
+    st.title("Tenores")
+
+    fig = px.scatter(
+        x = list_gh['keys'],
+        y = list_gh['by_unitweigth'],
+        height=700,
+    )
+    fig.update_layout(font_size=20, plot_bgcolor='rgba(180, 180, 180, 0.3)')
+    fig.update_xaxes(title="Opciones de refuerzo", visible=True, showticklabels=False)
+    fig.update_yaxes(title="Tenor", visible=True, showticklabels=False)
+
+    st.plotly_chart(fig, use_container_width=True)
+
     
     st.title("Colocación de piezas de refuerzo (# Operaciones)")
 
