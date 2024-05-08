@@ -128,7 +128,7 @@ if submitted1:
         title="Tenor",
         visible=True,
         showticklabels=False,
-        range=[0, max(list_gh["by_unitweigth"]) * 2],
+        range=[0, max(list_gh["by_unitweigth"]) * 1.2],
     )
 
     st.plotly_chart(fig, use_container_width=True)
