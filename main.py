@@ -63,45 +63,6 @@ if submitted1:
     results = scores.assign_scores(results, scores_data)
     list_gh = pr.get_lists_to_graph(results)
 
-    st.title("Puntajes de las opciones de refuerzo")
-
-    fig = px.scatter(
-        x=list_gh["keys"],
-        y=list_gh["by_score"],
-        height=700,
-    )
-    fig.update_layout(font_size=20, plot_bgcolor="rgba(180, 180, 180, 0.3)")
-    fig.update_xaxes(title="Opciones de refuerzo", visible=True, showticklabels=False)
-    fig.update_yaxes(title="Puntaje", visible=True, showticklabels=True, dtick=0.25)
-
-    st.plotly_chart(fig, use_container_width=True)
-
-    st.title("Precio del refuerzo (materiales)")
-
-    fig = px.scatter(
-        x=list_gh["keys"],
-        y=list_gh["by_price"],
-        height=700,
-    )
-    fig.update_layout(font_size=20, plot_bgcolor="rgba(180, 180, 180, 0.3)")
-    fig.update_xaxes(title="Opciones de refuerzo", visible=True, showticklabels=False)
-    fig.update_yaxes(title="Precio", visible=True, showticklabels=True, dtick=10000000)
-
-    st.plotly_chart(fig, use_container_width=True)
-
-    # st.title("Puntaje Vs. Precio")
-
-    # fig = px.scatter(
-    #     x=list_gh["by_price"],
-    #     y=list_gh["by_score"],
-    #     height=700,
-    # )
-    # fig.update_layout(font_size=20, plot_bgcolor="rgba(180, 180, 180, 0.3)")
-    # fig.update_xaxes(title="Precio", visible=True, showticklabels=True, dtick=10000000)
-    # fig.update_yaxes(title="Puntaje", visible=True, showticklabels=True, dtick=0.25)
-
-    # st.plotly_chart(fig, use_container_width=True)
-
     st.title("Peso total del refuerzo")
 
     fig = px.scatter(
@@ -135,6 +96,45 @@ if submitted1:
     )
 
     st.plotly_chart(fig, use_container_width=True)
+
+    st.title("Precio del refuerzo (materiales)")
+
+    fig = px.scatter(
+        x=list_gh["keys"],
+        y=list_gh["by_price"],
+        height=700,
+    )
+    fig.update_layout(font_size=20, plot_bgcolor="rgba(180, 180, 180, 0.3)")
+    fig.update_xaxes(title="Opciones de refuerzo", visible=True, showticklabels=False)
+    fig.update_yaxes(title="Precio", visible=True, showticklabels=True, dtick=10000000)
+
+    st.plotly_chart(fig, use_container_width=True)
+
+    st.title("Puntajes de las opciones de refuerzo")
+
+    fig = px.scatter(
+        x=list_gh["keys"],
+        y=list_gh["by_score"],
+        height=700,
+    )
+    fig.update_layout(font_size=20, plot_bgcolor="rgba(180, 180, 180, 0.3)")
+    fig.update_xaxes(title="Opciones de refuerzo", visible=True, showticklabels=False)
+    fig.update_yaxes(title="Puntaje", visible=True, showticklabels=True, dtick=0.25)
+
+    st.plotly_chart(fig, use_container_width=True)
+
+    # st.title("Puntaje Vs. Precio")
+
+    # fig = px.scatter(
+    #     x=list_gh["by_price"],
+    #     y=list_gh["by_score"],
+    #     height=700,
+    # )
+    # fig.update_layout(font_size=20, plot_bgcolor="rgba(180, 180, 180, 0.3)")
+    # fig.update_xaxes(title="Precio", visible=True, showticklabels=True, dtick=10000000)
+    # fig.update_yaxes(title="Puntaje", visible=True, showticklabels=True, dtick=0.25)
+
+    # st.plotly_chart(fig, use_container_width=True)
 
     # st.title("Colocación de piezas de refuerzo (# Operaciones)")
 
