@@ -29,6 +29,26 @@ with st.sidebar.form(key="Form1"):
             "Área del proyecto (m²)", value=10320, min_value=1
         )
 
+    st.header("Precios de barras (COP)")
+
+    bars = {}
+    for name in na_weight:
+        bars[name] = st.number_input(name, value=4701, min_value=1)
+
+    splices = {}
+    if len(na_splices):
+        st.header("Precios de empalmes (COP)")
+
+        for name in na_splices:
+            splices[name] = st.number_input(name, value=12566, min_value=1)
+
+    heads = {}
+    if len(na_heads):
+        st.header("Precios de cabezas (COP)")
+        
+        for name in na_heads:
+            heads[name] = st.number_input(name, value=17429, min_value=1)
+
     st.header("Calificación del refuerzo")
 
     scores_data = dict(
@@ -37,24 +57,6 @@ with st.sidebar.form(key="Form1"):
         by_pieces=st.number_input("Puntaje por #Operaciones", value=5, min_value=1),
         by_blueprints=st.number_input("Puntaje por simplicidad", value=5, min_value=1),
     )
-
-    st.header("Precios de barras (COP)")
-
-    bars = {}
-    for name in na_weight:
-        bars[name] = st.number_input(name, value=4701, min_value=1)
-
-    st.header("Precios de empalmes (COP)")
-
-    splices = {}
-    for name in na_splices:
-        splices[name] = st.number_input(name, value=12566, min_value=1)
-
-    st.header("Precios de cabezas (COP)")
-
-    heads = {}
-    for name in na_heads:
-        heads[name] = st.number_input(name, value=17429, min_value=1)
 
 
 if submitted1:
